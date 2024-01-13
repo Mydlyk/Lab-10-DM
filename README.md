@@ -30,6 +30,9 @@ DockerFile
 
 ![image](https://github.com/Mydlyk/Lab-10-DM/assets/65900710/72d9e9e3-eedc-4ef9-bdd3-2c7fac6c7fba)
 
+Token
+![image](https://github.com/Mydlyk/Lab-10-DM/assets/65900710/ebf78852-69aa-468d-9f6a-ee4a0cc72447)
+
 Secrets
 
 ![image](https://github.com/Mydlyk/Lab-10-DM/assets/65900710/7ff8e501-10e3-4c78-a197-1cc83f07bfcc)
