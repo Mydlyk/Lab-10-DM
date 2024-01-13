@@ -28,15 +28,7 @@ jobs:
         push: true
         tags: damianmydlak/lab10dm:latest
 
-  update_k8s_manifest:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout K8s config repo
-      uses: actions/checkout@v2
-      with:
-        repository: Mydlyk/Lav-10-DM
-        token: ${{ secrets.GITHUB_TOKEN }}
-        path: config
+ 
 
     - name: Update image version in K8s manifest
       run: |
