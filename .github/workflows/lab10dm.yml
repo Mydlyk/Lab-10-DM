@@ -1,0 +1,51 @@
+name: CI to Docker Hub
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: damianmydlak/lab10dm:latest
+
+  update_k8s_manifest:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    steps:
+    - name: Checkout K8s config repo
+      uses: actions/checkout@v2
+      with:
+        repository: Mydlyk/Lav-10-DM
+        token: ${{ secrets.GITHUB_TOKEN }}
+        path: config
+
+    - name: Update image version in K8s manifest
+      run: |
+        sed -i 's/Mydlyk\/Lab10-10-DM:.*/Mydlyk\/Lab-10-DM:${{ needs.appVersion.outputs.version_number }}/g' deployment.yaml
+        cd config
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add deployment.yaml
+        git commit -m "Update image version"
+        git push
+        
