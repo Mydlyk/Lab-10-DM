@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: damianmydlak/lab10dm
+        ports:
+        - containerPort: 80
+         resources:
+            limits:
+              memory: 250Mi
+              cpu: 250m
+            requests:
+              memory: 150Mi
+              cpu: 150m
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 5
+      maxUnavailable: 2
