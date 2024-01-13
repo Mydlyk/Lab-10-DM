@@ -16,6 +16,7 @@ deployment.yaml
 ingress.yaml
 
 ![image](https://github.com/Mydlyk/Lab-10-DM/assets/65900710/14c965bd-8925-4a46-adcd-9e255391a1c7)
+
 service.yaml
 
 ![image](https://github.com/Mydlyk/Lab-10-DM/assets/65900710/8f33630b-5d12-4f66-bf85-2472c6230e86)
