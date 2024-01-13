@@ -1,0 +1,16 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: stepcd
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: update-job
+            image: user/zad2gitops:latest
+            command: ["sh", "-c", "git clone https://github.com/Mydlyk/Lab-10-DM.git; kubectl apply -f config/deployment.yaml"]
+          serviceAccountName: gitops
+          restartPolicy: OnFailure
