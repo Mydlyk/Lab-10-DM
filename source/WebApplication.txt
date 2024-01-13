@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div>
+        <h1>Damian Mydlak</h1>
+	<h1>1.0.0</h1>
+	<h2>
+FROM nginx:alpine</br>
+RUN rm /usr/share/nginx/html/*</br>
+COPY ./source/usr/share/nginx/html</br>
+EXPOSE 80</br>
+CMD ["nginx", "-g", "daemon off;"]<h2>
+    </div>
+</body>
+</html>
